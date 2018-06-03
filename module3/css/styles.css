@@ -1,0 +1,16 @@
+.navbar-default .navbar-nav a {
+    background-color: rgb(162, 198, 233);
+    color: black;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    background-color: rgb(97, 170, 238);
+    color: white;
+}
+#tall-section {
+    height: 1000px;
+    background-color: bisque;
+    margin-top: 20px;
+}
+#tall-section>h2 {
+    font-size: 1.8em;
+}
