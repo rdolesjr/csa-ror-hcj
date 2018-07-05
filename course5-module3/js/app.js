@@ -12,7 +12,7 @@ function FoundItemsDirective() {
     scope: {
       items: '<',
       title: '<',
-      flag: '<',
+      message: '<',
       onRemove: '&'
     }
   };
@@ -24,10 +24,10 @@ NarrowItDownController.$inject = ['MenuSearchService'];
 function NarrowItDownController(MenuSearchService) {
   var nidCtl = this;
 
-  nidCtl.title = "Filtered Menu Items";
   nidCtl.found = [];
   nidCtl.searchTerm = "";
-  nidCtl.flag = "start";
+  nidCtl.message = "";
+  nidCtl.title = "Filtered Menu Items (" + nidCtl.found.length + ")";
 
   nidCtl.searchMenu = function () {
   //console.log(nidCtl.searchTerm + " has length " + nidCtl.searchTerm.length);
@@ -35,16 +35,32 @@ function NarrowItDownController(MenuSearchService) {
       var promise = MenuSearchService.GetMatchedMenuItems(nidCtl.searchTerm);
       promise.then( function(response) {
         nidCtl.found = response;
+        if (nidCtl.found.length === 0) {
+          nidCtl.message = "Nothing found";
+          nidCtl.title = "Filtered Menu Items (" + nidCtl.found.length + ")";
+        }
+        else {
+          nidCtl.message = "";
+          nidCtl.title = "Filtered Menu Items (" + nidCtl.found.length + ")";
+        }
         }).catch( function(error) {
+          nidCtl.found = [];
+          nidCtl.message = "Error from menu search service - please try again";
+          nidCtl.title = "Filtered Menu Items (" + nidCtl.found.length + ")";
           console.log("MenuSearchService.GetMatchedMenuItems() failed, error = ", error);
         });
     }
-    nidCtl.flag = "";
+    else {
+      nidCtl.found = [];
+      nidCtl.message = "Nothing found";
+      nidCtl.title = "Filtered Menu Items (" + nidCtl.found.length + ")";
+    }
   }
 
   nidCtl.removeItem = function (itemIndex) {
 //console.log("Removing index " + itemIndex);
     nidCtl.found.splice(itemIndex, 1);
+    nidCtl.title = "Filtered Menu Items (" + nidCtl.found.length + ")";
   };
 }
 
