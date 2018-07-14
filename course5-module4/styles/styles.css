@@ -10,3 +10,6 @@ li {
   text-align: center;
   list-style-type: none;
 }
+table {
+  margin: 15px auto 15px auto;
+}
