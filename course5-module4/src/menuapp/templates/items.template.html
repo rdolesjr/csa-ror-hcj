@@ -1,0 +1,12 @@
+<h2>Items in Category</h2>
+
+<table class="table-bordered">
+    <tr>
+        <th class="text-center">Name</th>
+        <th class="text-center">Description</th>
+    </tr>
+    <tr ng-repeat="item in itemsCtlr.items" class="text-center">
+        <td>{{ item.name }}</td>
+        <td>{{item.description }}</td>
+    </tr>
+</table>
