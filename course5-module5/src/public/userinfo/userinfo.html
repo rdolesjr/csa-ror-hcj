@@ -1,0 +1,31 @@
+<fieldset>
+    <legend>Newsletter Registration</legend>
+
+    <div ng-if="uiCtrl.user" class="user-block">
+        <label>First name:</label>
+        <span class="user-info">{{uiCtrl.user.firstname}}</span> <br>
+
+        <label>Last name:</label>
+        <span class="user-info">{{uiCtrl.user.lastname}}</span> <br>
+
+        <label>Email:</label>
+        <span class="user-info">{{uiCtrl.user.email}}</span> <br>
+
+        <label>Phone number:</label>
+        <span class="user-info">{{uiCtrl.user.phone}}</span> <br>
+
+        <label>Favorite dish:</label>
+        <span class="user-info">{{uiCtrl.user.favorite}} - {{uiCtrl.user.lookup.name}}</span> <br>
+        <div ng-if="uiCtrl.user.favorite === uiCtrl.user.lookup.short_name">
+            <img width="250" height="150"
+                ng-src="{{uiCtrl.path}}/images/{{uiCtrl.user.lookup.short_name}}.jpg" alt="{{uiCtrl.user.lookup.name}}">
+            <p>{{uiCtrl.user.lookup.description}}</p>
+        </div>
+        
+    </div>
+    <div ng-if="!uiCtrl.user" class="user-block">
+        <h2>Not Signed Up Yet.</h2>
+        <h2><a ui-sref="public.signup">Sign up Now!</a></h2>
+    </div>
+
+</fieldset>
